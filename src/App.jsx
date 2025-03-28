@@ -5,10 +5,13 @@ import { Routes, Route } from "react-router";
 import HomePage from "./pages/HomePage"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
-import PrivatePageExample from "./pages/PrivatePageExample";
+
+// import PrivatePageExample from "./pages/PrivatePageExample";
 
 // components
 import Navbar from "./components/Navbar"
+import PrivatePage from "./components/PrivatePage";
+//!NO OLVIDES USAR EL PrivatePage en las páginas que no se pueden ver si no estas logeado como en la ruta home 
 
 function App() {
 
@@ -20,10 +23,9 @@ function App() {
       <hr />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<PrivatePage> <HomePage /> </PrivatePage>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/private-page-example" element={<PrivatePageExample />} />
 
         {/* error FE routes here... */}
 
