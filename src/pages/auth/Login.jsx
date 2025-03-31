@@ -1,4 +1,4 @@
-import axios from "axios";
+import service from "../../service/config.service";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
@@ -22,7 +22,7 @@ function Login() {
 
     try {
       
-      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, {
+      const response = await service.post(`/auth/login`, {
         email: email,
         password: password
       })

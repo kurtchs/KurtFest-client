@@ -1,4 +1,4 @@
-import axios from "axios";
+import service from "../../service/config.service";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,8 @@ function Signup() {
 
     try {
 
-      await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/signup`, {
+      // ahora con esto no es necesario el axios aqui, todo lo esta haciendo en service
+      await service.post(`/auth/signup`, {
         username: username,
         email: email,
         password: password
@@ -85,7 +86,7 @@ function Signup() {
         <button type="submit">Registrar</button>
 
         {errorMessage !== null ? <p>{errorMessage}</p> : null}
-        
+
       </form>
       
     </div>

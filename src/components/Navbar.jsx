@@ -34,12 +34,12 @@ function Navbar() {
     </>
     :
     <>
-    <Link to="/login">Login</Link>
+    {/* <Link to="/login">Login</Link> */}
     </>
     }
 
       {/* <Link to="/signup">Registro</Link> */}
-      {/* <Link to="/private-page-example">Ejemplo Privado</Link> */}
+      <Link to="/private-page-example">Prueba Privado</Link>
     </nav>
   );
 }

@@ -1,4 +1,4 @@
-import axios from "axios";
+import service from "../service/config.service"
 import { createContext, useContext, useEffect, useState } from "react"
 
 
@@ -10,6 +10,7 @@ function AuthWrapper(props) {
 
     const [ isLoggedIn, setIsLoggedIn ] = useState(false)
     const [ loggedUserId, setLoggedUserId ] = useState(null)
+    const [ userRole, setUserRole ] = useState(null)
     const [ isAuthenticatingUser, setIsAuthenticatingUser ] = useState(true) 
 
     useEffect(() => {
@@ -20,17 +21,15 @@ function AuthWrapper(props) {
 
         try {
             
-            const authToken = localStorage.getItem("authToken")
+            
 
-            const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/auth/verify`, {
-                headers:{
-                    authorization: `Bearer ${authToken}`
-                }
-            })
+            //recuerda axios se esta realizando en la configuracion del service y el toque tambien esta configurado ahi
+            const response = await service.get(`/auth/verify`)
 
             console.log(response)
             setIsLoggedIn(true)
             setLoggedUserId(response.data.payload._id)
+            setUserRole(response.data.payload.role)
             setIsAuthenticatingUser(false)
 
         } catch (error) {
@@ -38,6 +37,7 @@ function AuthWrapper(props) {
             console.log(error)
             setIsLoggedIn(false)
             setLoggedUserId(null)
+            setUserRole(null)
             setIsAuthenticatingUser(false)
         }
 

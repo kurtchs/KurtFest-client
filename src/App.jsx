@@ -6,7 +6,8 @@ import HomePage from "./pages/HomePage"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
 
-// import PrivatePageExample from "./pages/PrivatePageExample";
+//!PAGINA DE PRUEBA FUTURO EDIT ADMIN
+import PrivatePageExample from "./pages/PrivatePageExample";
 
 // components
 import Navbar from "./components/Navbar"
@@ -26,7 +27,7 @@ function App() {
         <Route path="/" element={<PrivatePage> <HomePage /> </PrivatePage>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-
+        <Route path="/private-page-example" element={<PrivatePageExample />} />
         {/* error FE routes here... */}
 
       </Routes>
