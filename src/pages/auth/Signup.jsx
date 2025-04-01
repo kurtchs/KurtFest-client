@@ -53,30 +53,33 @@ function Signup() {
     
       <form onSubmit={handleSignup}>
 
-        <label>Correo Electronico:</label>
+    
         <input
           type="email"
           name="email"
+          placeholder="Email"
           value={email}
           onChange={handleEmailChange}
         />
 
         <br />
 
-        <label>Username:</label>
+       
         <input
           type="text"
           name="username"
+          placeholder="Username"
           value={username}
           onChange={handleUsernameChange}
         />
 
         <br />
 
-        <label>Contraseña:</label>
+        
         <input
           type="password"
           name="password"
+          placeholder="password"
           value={password}
           onChange={handlePasswordChange}
         />
