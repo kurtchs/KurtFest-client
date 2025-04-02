@@ -59,7 +59,7 @@ function Login() {
   return (
     <div>
 
-          <img src="../public/logo.png" alt="logo" />
+          <img src="https://res.cloudinary.com/dtetqhpqr/image/upload/v1743587187/logo_j2pu25.png" alt="logo" />
 
       <form onSubmit={handleLogin}>
         <label></label>

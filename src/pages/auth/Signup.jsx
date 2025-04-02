@@ -49,7 +49,9 @@ function Signup() {
   return (
     <div>
 
-      <h1>Formulario de Registro</h1>
+        <img src="https://res.cloudinary.com/dtetqhpqr/image/upload/v1743587187/logo_j2pu25.png" alt="logo" />
+
+      <h1>Registrate</h1>
     
       <form onSubmit={handleSignup}>
 
