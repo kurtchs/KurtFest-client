@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import service from "../service/config.service"
 import SearchBar from "../components/SearchBar"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 function Home() {
+
+  const params = useParams()
   const [ allEvents, setAllEvents ] = useState(null)
   const [ searchBar, setSearchBar ] = useState("")
 
@@ -26,6 +28,8 @@ function Home() {
   const filteredEvents = allEvents.filter(function (event){
     return event.name.toLowerCase().includes(searchBar.toLowerCase())
   })
+
+  
   
   return (
     <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
@@ -36,7 +40,7 @@ function Home() {
 
      {filteredEvents.map((eachEvent) => {
       return(
-        <>
+        <div key ={eachEvent._id}>
         
         <Link to={`/${eachEvent._id}`} key ={eachEvent._id} >
         <div  style={{
@@ -60,12 +64,12 @@ function Home() {
 
         <div>
           <Link to={`/editevent/${eachEvent._id}`}>
-         <button>Edit</button> 
+         <button>Edit/Delete</button> 
          </Link>
-         <button>Delete</button>
+         
         </div>
 
-        </>
+        </div>
       )
       })} 
       

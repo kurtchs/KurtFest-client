@@ -68,7 +68,7 @@ function EditEvent() {
         genre: genre,
     } )
     try {
-       const response = await service.put(`events/editevent/${params.eventId}`, {
+       const response = await service.put(`/events/editevent/${params.eventId}`, {
             
             name,
             info,
@@ -92,6 +92,17 @@ function EditEvent() {
         console.log("evento no editado", error)
     }
   };
+
+  const handleDelete = (e) => {
+    service.delete(`events/${params.eventId}`)
+    .then(() => {
+      console.log("Evento eliminado")
+      navigate("/");
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
 
 
   return (
@@ -171,6 +182,7 @@ function EditEvent() {
           </div>
 
           <button type="submit">Editar</button>
+          <button onClick={handleDelete}>Delete</button>
         </form>
       </div>
     </>

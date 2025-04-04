@@ -29,12 +29,12 @@ function App() {
       <Routes>
         
         <Route path="/" element={<PrivatePage> <HomePage /> </PrivatePage>} />
-        <Route path="/:eventId" element={<EventDetailPage />} />
-        <Route path="/editevent/:eventId" element={<EditEvent />} />
-        <Route path="/addevent/" element={<AddEvent />} />
+        <Route path="/:eventId" element={<PrivatePage> <EventDetailPage /> </PrivatePage> } />
+        <Route path="/editevent/:eventId" element={<PrivatePage> <EditEvent /> </PrivatePage> } />
+        <Route path="/addevent/" element={ <PrivatePage> <AddEvent /> </PrivatePage>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/private-page-example" element={<PrivatePageExample />} />
+        {/* <Route path="/private-page-example" element={<PrivatePageExample />} /> */}
         {/* error FE routes here... */}
 
       </Routes>

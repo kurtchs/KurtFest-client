@@ -39,7 +39,7 @@ function Navbar() {
     }
 
       {/* <Link to="/signup">Registro</Link> */}
-      <Link to="/private-page-example">Prueba Privado</Link>
+      {/* <Link to="/private-page-example">Prueba Privado</Link> */}
     </nav>
   );
 }
