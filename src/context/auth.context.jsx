@@ -26,7 +26,7 @@ function AuthWrapper(props) {
             //recuerda axios se esta realizando en la configuracion del service y el toque tambien esta configurado ahi
             const response = await service.get(`/auth/verify`)
 
-            console.log(response)
+            // console.log(response)
             setIsLoggedIn(true)
             setLoggedUserId(response.data.payload._id)
             setUserRole(response.data.payload.role)
