@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom"
 import service from "../service/config.service"
 import { useEffect, useState } from "react"
+import Error500 from "./Error500"
 
 function EventDetailPage () {
     
     const params = useParams()
     // console.log(params)
     const [ eventDetail, setEventDetail ] = useState(null)
+    const [ hasError, setHasError ] = useState(false)
 
     
     useEffect(() => {
@@ -21,8 +23,26 @@ function EventDetailPage () {
             
         } catch (error) {
             console.log(error)
+            setHasError(true)
         }
     }
+
+    //simulacion de error
+    // const getData = async () => {
+    //     try {
+    //         throw new Error("simulacion de error 500")
+    //     } catch (error) {
+    //         console.log(error)
+    //         setHasError(true)
+            
+    //     }
+    // }
+
+    if(hasError) {
+        return <Error500 />
+      }
+    
+
     if(eventDetail === null) {
         return <h3>Buscando detalles del evento...</h3>
       }
@@ -30,9 +50,11 @@ function EventDetailPage () {
     return(
         <>
         <div key={eventDetail._id}>
+        <img src={eventDetail.imageUrl} alt={eventDetail.name} style={{ width: "100%", height: "auto", borderRadius: "10px" }} />
             <h2>{eventDetail.name}</h2> 
             <p>{eventDetail.genre}</p> 
             <p>{eventDetail.date}</p> 
+            <p>{eventDetail.hour}</p> 
             <p>{eventDetail.location}</p>
             <p>{eventDetail.totalAmount}€</p> 
             <p>{eventDetail.info}</p> 

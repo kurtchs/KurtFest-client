@@ -13,6 +13,7 @@ function EditEvent() {
   const [location, setLocation] = useState("");
   const [totalAmount, setTotalAmount] = useState("");
   const [genre, setGenre] = useState("");
+  const [file, setFile] = useState(null)
 
     // useEffect(() => {
 
@@ -56,27 +57,50 @@ function EditEvent() {
             console.log(error)
         }
     }
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("datos enviados",{
-        name: name,
-        info: info,
-        date: date,
-        hour: hour,
-        location: location,
-        totalAmount: totalAmount,
-        genre: genre,
-    } )
+
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0])
+    }
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     console.log("datos enviados",{
+//         name: name,
+//         info: info,
+//         date: date,
+//         hour: hour,
+//         location: location,
+//         totalAmount: totalAmount,
+//         genre: genre,
+//     } )
+
+    // FormData permite contruir facilmente key-values para enviar datos
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData()
+        formData.append("name", name)
+        formData.append("info", info)
+        formData.append("date", date)
+        formData.append("hour", hour)
+        formData.append("location", location)
+        formData.append("totalAmount", totalAmount)
+        formData.append("genre", genre)
+        if (file) {
+            formData.append("image", file)
+        }
     try {
-       const response = await service.put(`/events/editevent/${params.eventId}`, {
+       const response = await service.put(`/events/editevent/${params.eventId}`, formData, {
+
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
             
-            name,
-            info,
-            date,
-            hour,
-            location,
-            totalAmount,
-            genre,
+            // name,
+            // info,
+            // date,
+            // hour,
+            // location,
+            // totalAmount,
+            // genre,
         })
         
         console.log("evento editado")
@@ -178,6 +202,15 @@ function EditEvent() {
               type="text"
               name="genre"
               placeholder="Event`s Genre"
+            />
+          </div>
+
+          <div>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleFileChange}  
             />
           </div>
 

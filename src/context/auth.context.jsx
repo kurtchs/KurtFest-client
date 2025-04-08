@@ -46,6 +46,7 @@ function AuthWrapper(props) {
     const passedContext = {
         isLoggedIn,
         loggedUserId,
+        userRole,
         authenticateUser
     }
 

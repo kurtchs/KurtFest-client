@@ -13,28 +13,55 @@ const [ hour, setHour ] = useState("")
 const [ location, setLocation ] = useState("")
 const [ totalAmount, setTotalAmount ] = useState("")
 const [ genre, setGenre ] = useState("")
+const [ file, setFile] = useState(null)
 
-const handleSubmit = (e) => {
+const handleFileChange = (e) => {
+    setFile(e.target.files[0])
+}
+
+const handleSubmit =  async (e) => {
     e.preventDefault()
 
-    service.post("/events/addevent/", {
-        name: name,
-        info: info,
-        date: date,
-        hour: hour,
-        location: location,
-        totalAmount: totalAmount,
-        genre: genre,
-      
-    })
-    .then(() => {
+    const formData = new FormData()
+        formData.append("name", name)
+        formData.append("info", info)
+        formData.append("date", date)
+        formData.append("hour", hour)
+        formData.append("location", location)
+        formData.append("totalAmount", totalAmount)
+        formData.append("genre", genre)
+        if (file) {
+            formData.append("image", file)
+        }
 
-        navigate("/")
+        try {
+            const response = await service.post("/events/addevent/", formData, {
+        
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+                // name: name,
+                // info: info,
+                // date: date,
+                // hour: hour,
+                // location: location,
+                // totalAmount: totalAmount,
+                // genre: genre,
+              
+            })
 
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+            if (response.status === 200) {
+                console.log("Evento creado con éxito");
+                navigate("/")
+            } else {
+                console.log("Error al crear evento")
+            }
+            
+        } catch (error) {
+            console.log(error)
+        }
+
+    
 
 }
 
@@ -114,6 +141,15 @@ const handleSubmit = (e) => {
               type="text"
               name="genre"
               placeholder="Event`s Genre"
+            />
+          </div>
+
+          <div>
+            <input
+              onChange={handleFileChange}
+              type="file"
+              name="image"
+              accept="image/*"
             />
           </div>
 
