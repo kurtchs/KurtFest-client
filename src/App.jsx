@@ -6,9 +6,10 @@ import HomePage from "./pages/HomePage"
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
 import NotFoundPage from "./pages/NotFoundPage";
+import AdminPage from "./pages/AdminPage";
 
 //!PAGINA DE PRUEBA FUTURO EDIT ADMIN
-import PrivatePageExample from "./pages/PrivatePageExample";
+
 
 // components
 import Navbar from "./components/Navbar"
@@ -16,6 +17,8 @@ import PrivatePage from "./components/PrivatePage";
 import EventDetailPage from "./pages/EventDetailPage";
 import EditEvent from "./components/EditEvent";
 import AddEvent from "./components/AddEvent";
+import ProfilePage from "./pages/ProfilePage";
+import EditUser from "./components/EditUser";
 //!NO OLVIDES USAR EL PrivatePage en las páginas que no se pueden ver si no estas logeado como en la ruta home 
 
 function App() {
@@ -35,7 +38,9 @@ function App() {
         <Route path="/addevent/" element={ <PrivatePage> <AddEvent /> </PrivatePage>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/private-page-example" element={<PrivatePageExample />} /> */}
+        <Route path="/adminpage" element={<PrivatePage> <AdminPage /> </PrivatePage>} />
+        <Route path="/profile/:userId" element={<PrivatePage> <ProfilePage /> </PrivatePage>} />
+        <Route path="/editusername" element={<PrivatePage> <EditUser /> </PrivatePage> } />
 
 
         {/* error FE routes here... */}

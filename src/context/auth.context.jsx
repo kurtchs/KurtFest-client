@@ -11,6 +11,7 @@ function AuthWrapper(props) {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false)
     const [ loggedUserId, setLoggedUserId ] = useState(null)
     const [ userRole, setUserRole ] = useState(null)
+    const [ username, setUsername ] = useState(null)
     const [ isAuthenticatingUser, setIsAuthenticatingUser ] = useState(true) 
 
     useEffect(() => {
@@ -26,10 +27,12 @@ function AuthWrapper(props) {
             //recuerda axios se esta realizando en la configuracion del service y el toque tambien esta configurado ahi
             const response = await service.get(`/auth/verify`)
 
-            // console.log(response)
+            console.log(response.data)
+            
             setIsLoggedIn(true)
             setLoggedUserId(response.data.payload._id)
             setUserRole(response.data.payload.role)
+            setUsername(response.data.payload.username)
             setIsAuthenticatingUser(false)
 
         } catch (error) {
@@ -38,6 +41,7 @@ function AuthWrapper(props) {
             setIsLoggedIn(false)
             setLoggedUserId(null)
             setUserRole(null)
+            setUsername(null)
             setIsAuthenticatingUser(false)
         }
 
@@ -47,6 +51,7 @@ function AuthWrapper(props) {
         isLoggedIn,
         loggedUserId,
         userRole,
+        username,
         authenticateUser
     }
 

@@ -40,6 +40,21 @@ function Home() {
     return event.name.toLowerCase().includes(searchBar.toLowerCase())
   })
 
+  const handleDelete = (eventId) => {
+    const confirmDelete = window.confirm("¿Seguro que quieres eliminar este evento?")
+    if(!confirmDelete) {
+      return 
+    }
+    service.delete(`events/${eventId}`)
+    .then(() => {
+      console.log("Evento eliminado")
+     const updatedEvents = allEvents.filter((event) => event._id !== eventId)
+     setAllEvents(updatedEvents)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
   
   
   return (
@@ -84,10 +99,12 @@ function Home() {
         <div>
 
           {userRole === "admin" ? (
-          <Link to={`/editevent/${eachEvent._id}`}>
-         <button>Edit/Delete</button> 
+            <>
+            <Link to={`/editevent/${eachEvent._id}`}>
+         <button>Edit</button> 
          </Link>
-
+         <button onClick={() => handleDelete(eachEvent._id)}>Delete</button>
+            </>
           ) : 
           null
           }
