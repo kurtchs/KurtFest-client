@@ -15,25 +15,6 @@ function EditEvent() {
   const [genre, setGenre] = useState("");
   const [file, setFile] = useState(null)
 
-    // useEffect(() => {
-
-    //    service.get(`events/${params.eventId}`)
-    //    .then((response) => {
-    //     console.log(params.eventId)
-    //     console.log(response)
-    //     setName(response.data.name)
-    //     setInfo(response.data.info)
-    //     setDate(response.data.date)
-    //     setHour(response.data.hour)
-    //     setLocation(response.data.location)
-    //     setTotalAmount(response.data.totalAmount)
-    //     setGenre(response.data.genre)
-    //    })
-    //    .catch((error) => {
-    //     console.log(error)
-    //    }) 
-
-    // }, [])
 
     useEffect(() => {
         getEvent()
@@ -50,7 +31,6 @@ function EditEvent() {
             setTotalAmount(response.data.totalAmount)
             setGenre(response.data.genre)
 
-            console.log(response.data)
 
             
         } catch (error) {
@@ -61,18 +41,6 @@ function EditEvent() {
     const handleFileChange = (e) => {
         setFile(e.target.files[0])
     }
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     console.log("datos enviados",{
-//         name: name,
-//         info: info,
-//         date: date,
-//         hour: hour,
-//         location: location,
-//         totalAmount: totalAmount,
-//         genre: genre,
-//     } )
-
     // FormData permite contruir facilmente key-values para enviar datos
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -94,23 +62,9 @@ function EditEvent() {
             "Content-Type": "multipart/form-data"
         }
             
-            // name,
-            // info,
-            // date,
-            // hour,
-            // location,
-            // totalAmount,
-            // genre,
         })
         
-        console.log("evento editado")
-        // setName(response.data.name)
-        // setInfo(response.data.info)
-        // setDate(response.data.date)
-        // setHour(response.data.hour)
-        // setLocation(response.data.location)
-        //     setTotalAmount(response.data.totalAmount)
-        //     setGenre(response.data.genre)
+  
         navigate("/");
     } catch (error) {
         console.log("evento no editado", error)

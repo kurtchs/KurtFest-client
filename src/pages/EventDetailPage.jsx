@@ -10,7 +10,6 @@ function EventDetailPage () {
     
     const navigate = useNavigate()
     const params = useParams()
-    // console.log(params)
     const { loggedUserId } = useContext(AuthContext)
     const [ eventDetail, setEventDetail ] = useState(null)
     const [ hasError, setHasError ] = useState(false)
@@ -69,8 +68,10 @@ function EventDetailPage () {
     return(
         <>
         
-        <div key={eventDetail._id}>
-        <img src={eventDetail.imageUrl} alt={eventDetail.name} style={{ width: "100%", height: "auto", borderRadius: "10px" }} />
+        <div className="event-detail" key={eventDetail._id}>
+        <img src={eventDetail.imageUrl} alt={eventDetail.name} className="event-image" />
+
+        <div className="event-text">
             <h2>{eventDetail.name}</h2> 
             <p>{eventDetail.genre}</p> 
             <p>{eventDetail.date}</p> 
@@ -80,8 +81,8 @@ function EventDetailPage () {
             <p>{eventDetail.info}</p> 
             <p> Created by: {eventDetail.admin.username}</p> 
         </div>
-
-        <button onClick={saveData}>Comprar</button>
+        </div>
+        <button className="buy-button" onClick={saveData}>Comprar</button>
      
         </>
     )

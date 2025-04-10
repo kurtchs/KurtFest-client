@@ -28,7 +28,7 @@ function App() {
       <Navbar />
 
       <br />
-      <hr />
+      
 
       <Routes>
         
@@ -47,6 +47,9 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
 
       </Routes>
+      <footer style={{ marginTop: '50px', textAlign: 'center', padding: '20px', backgroundColor: 'black', color: 'white' }}>
+      <p>© 2025 Kurt Chacón. Todos los derechos reservados.</p>
+      </footer>
     </div>
   )
 }

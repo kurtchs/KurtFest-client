@@ -1,6 +1,5 @@
-import { AuthContext } from "../context/auth.context"
 import service from "../service/config.service"
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function AdminPage() {
 const [ users, setUsers ] = useState([])
@@ -23,7 +22,6 @@ const [ users, setUsers ] = useState([])
     if(confirmDelete) {
       try{
         const response = await service.delete(`/users/${userId}`)
-        console.log("Usuario borrado", response)
         setUsers(users.filter(user => user._id !== userId))
       } catch (error) {
       console.log(error)
@@ -35,16 +33,15 @@ const [ users, setUsers ] = useState([])
  
 
   return (
-    <div>
+    <div className="admin-page">
       
       <h1>Usuarios registrados</h1>
 
       {users.map((user) => (
-        <div key={user._id}>
-          <p>{user.username}</p>
-          <p>{user.email}</p>
-          <button onClick={() => handleDelete(user._id)} >Banear usuario</button>
-          <hr />
+        <div className="user-card" key={user._id}>
+          <p className="user-name">{user.username}</p>
+          <p className="user-email">{user.email}</p>
+          <button className="ban-button" onClick={() => handleDelete(user._id)} >Banear usuario</button>
           </div>
       ))}
     </div>

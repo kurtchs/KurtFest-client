@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import service from "../service/config.service"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 function AddEvent () {
 
@@ -40,18 +40,10 @@ const handleSubmit =  async (e) => {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
-                // name: name,
-                // info: info,
-                // date: date,
-                // hour: hour,
-                // location: location,
-                // totalAmount: totalAmount,
-                // genre: genre,
               
             })
 
             if (response.status === 200) {
-                console.log("Evento creado con éxito");
                 navigate("/")
             } else {
                 console.log("Error al crear evento")

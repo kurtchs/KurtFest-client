@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context"
 function ProfilePage() {
     const { loggedUserId, isLoggedIn, username } = useContext(AuthContext)
     const [ user, setUser ] = useState(null)
-    // const [ allEvents, setAllEvents ] = useState([])
+    
     const [ allTickets, setAllTickets ] = useState([])
 
 
@@ -62,23 +62,20 @@ function ProfilePage() {
 
             <h1>{user.username}</h1>
             
-            <Link to="/editusername"> <button> Change username</button> </Link>
+            <Link to="/editusername"> <button className="change-button"> Change username</button> </Link>
 
             <h1>Purchased tickets</h1>
-            <ul>
-                
+                <div className="tickets-list">
                 {allTickets.map((ticket) =>
-                <div key={ticket._id}>
+                <div className="ticket-container" key={ticket._id}>
                 <p><strong>Event</strong> {ticket.event.name}</p>
                 <p><strong>Date</strong> {ticket.date}</p>
                 <p><strong>Time</strong> {ticket.hour}</p>
                 <p><strong>Owner</strong> {user.username}</p>
-                <button onClick={() => handleDelete(ticket._id)}>Delete</button>
+                <button className="delete-ticket-button" onClick={() => handleDelete(ticket._id)}>Delete</button>
                 </div>
                 )}
-
-            </ul>
-
+          </div>
         </div>
         </>
     )
